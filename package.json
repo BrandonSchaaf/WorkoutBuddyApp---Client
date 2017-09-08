@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./node_modules/http-server/bin/http-server"
+    "start": "node ./node_modules/http-server/bin/http-server",
+    "postinstall": "bower install"
   },
   "author": "Brandon Schaaf",
   "license": "ISC",
