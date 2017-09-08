@@ -1,0 +1,40 @@
+.blueBackground {
+	background-color: #16b8e5;
+}
+
+.imgFill {
+	width: 100%;
+}
+
+.marginTop{
+	margin-top: 7%;
+}
+
+.splashText1{
+	font-family: "Helvetica Neue";
+	font-style: italic;
+	align-content: center;
+	text-align: center;
+	font-size: 110px;
+	color: #FDF406;
+}
+
+.splashText2{
+	line-height: 10px;
+	font-family: "Helvetica Neue";
+	font-style: italic;
+	align-content: center;
+	text-align: center;
+	font-size: 110px;
+	color: #FDB806;
+}
+
+.splashText3{
+	line-height: 150px;
+	font-family: "Helvetica Neue";
+	font-style: italic;
+	align-content: center;
+	text-align: center;
+	font-size: 30px;
+	color: #037796;
+}
