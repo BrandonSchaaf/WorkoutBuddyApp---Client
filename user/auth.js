@@ -80,7 +80,7 @@ $(function(){
 			})
 
 			.fail(function(){
-				$("#li_error").text("Huh... Something happened during log in. ")
+				$("#li_error").text("Huh... Something happened during log in. ").show();
 			});
 		},
 
