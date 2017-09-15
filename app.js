@@ -1,8 +1,8 @@
 $(function(){
 
 var WorkoutLog = (function($, undefined) {               // THIS IS THE ENTIRE APP. WorkoutLog = a giant IFFE. A self-calling function. "extend" allows this object to extend across files. Methods and other objects can then be added elsewhere.
-      // var API_BASE = "https://workout-buddy-api.herokuapp.com/api/";
-      var API_BASE = "http://localhost:3000/api/"
+      var API_BASE = "https://workout-buddy-api.herokuapp.com/api/";
+      // var API_BASE = "http://localhost:3000/api/"
       var userDefinitions = [];
 
       var setAuthHeader = function(sessionToken) {
