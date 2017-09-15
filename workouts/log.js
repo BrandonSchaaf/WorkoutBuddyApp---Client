@@ -5,11 +5,18 @@ $(function() {
 
 			setDefinitions: function() {
 				var defs = WorkoutLog.definition.userDefinitions;
-				var len = defs.length;
+				// var len = defs.length;
 				var opts;
-				for (var i = 0; i < len; i++) {
-					opts += "<option value='" + defs[i].id + "'>" + defs[i].description + "</option>";
-				}
+				// for (var i = 0; i < len; i++) {
+				// 	opts += "<option value='" + defs[i].id + "'>" + defs[i].description + "</option>";
+				// }
+				defs.forEach(function(workout, index1){
+					if(workout.description != null){
+						workout.description.forEach(function(activity, index2){
+							opts += "<option value='" + activity+index1+index2 + "'>" + activity + "</option>";
+						})
+					}
+				})
 				$("#log-definition").children().remove();
 				$("#log-definition").append(opts);
 				$("#update-definition").children().remove();
@@ -23,9 +30,10 @@ $(function() {
 					lis += "<li class='list-group-item'>" + 
 					history[i].def + " - " + 
 					history[i].result + " " +
+					history[i].desc + " " +
 					"<div class='pull-right'>" +			// Pass the log.id into the button's ID attribute
-						"<button id='" + history[i].id + "' class='update'><strong>U</strong></button>" +
-						"<button id='" + history[i].id + "' class='remove'><strong>X</strong></button>" +
+						"<button id='" + history[i].id + "' class='update'><strong>Edit</strong></button>" +
+						"<button id='" + history[i].id + "' class='remove'><strong>Delete</strong></button>" +
 					"</div></li>";
 				}
 				$("#history-list").children().remove();
@@ -53,6 +61,8 @@ $(function() {
 		      	});
 			},
 
+// EDIT IS NOT WORKING
+
 			getWorkout: function() {
 				var thisLog = {id: $(this).attr("id")};
 				logID = thisLog.id;
@@ -73,7 +83,7 @@ $(function() {
 
 			},
 
-updateWorkout: function() {
+			updateWorkout: function() {
 				$("#update").text("Update");
 				var updateLog = { 
 					id: $('#update-id').val(),
@@ -102,6 +112,7 @@ updateWorkout: function() {
 				});
 
 			},
+
 			delete: function(){
 				var thisLog = {					// "This" is the button on the li
 					id: $(this).attr("id")		// .attr("id") targets the value of the id attribute of button
@@ -118,6 +129,7 @@ updateWorkout: function() {
 				for(var i = 0; i < WorkoutLog.log.workouts.length; i++){	// Deletes item out of workouts array
 					if(WorkoutLog.log.workouts[i].id == thisLog.id){
 						WorkoutLog.log.workouts.splice(i, 1);
+						console.log("That log was deleted.")
 					}
 				}
 				deleteLog.fail(function(){

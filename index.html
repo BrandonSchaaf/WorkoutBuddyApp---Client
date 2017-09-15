@@ -6,119 +6,181 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Workout Log</title>
+  <title>Workout Buddy</title>
 
   <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="main.css">
 
 	<!-- <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> -->
 
 </head>
 
-<body>
+<body class= "blueBackground">
 
+  <!-- NAV Tabs -->
 
-  <ul class="nav nav-tabs">
-  	<a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a>
-    <li><a href="#home" id="loginout" class="disabled" data-toggle="tab">Login</a></li>
-    <li><a href="#define" class="disabled" data-toggle="tab">Define</a></li>
-    <li><a href="#log" class="disabled" data-toggle="tab">Log</a></li>
-    <li><a href="#history" class="disabled" data-toggle="tab">View History</a></li>
+  <ul class="nav nav-tabs" style="background-color: tomato">
+    <li><a href="#home" id="logoutTab" class="invisible" data-toggle="tab">Log Out</a></li>
+    <li><a href="#profile" id="profileTab" class="invisible" data-toggle="tab">Profile</a></li>
+    <li><a href="#log" id="logTab" class="invisible" data-toggle="tab">Log</a></li>
+    <li><a href="#history" id="historyTab" class="invisible" data-toggle="tab">History</a></li>
   </ul>
+
+  <!-- SNEAKERS, TITLE, LOG IN, and SIGN UP -->
 
   <div class="container">
     <div class="tab-content">
       <div class="tab-pane active" id="home">
-        <h2>Workout Log</h2>
-        <div id="forLogin">
-
-          <button data-toggle="modal" data-target="#login-modal" class="btn btn-primary">Login</button>
-          <button data-toggle="modal" data-target="#signup-modal" class="btn btn-primary">Sign Up</button>
-        </div>
-        <div id="forLogout" style="display:none;">
-          <button class="btn btn-primary">Logout</button>
+        <div class="row">
+          <div class="marginTop col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-6 col-xs-offset-3">
+            <img src="img/runner.gif" class="imgFill">
+          </div>
+          <div class="text-center" id="forLogin">
+            <span class="splashText1">WORKOUT</span><br>
+            <span class="splashText2"><b>BUDDY</b></span><br>
+            <div class="btn-group marginTop2">
+              <button data-toggle="modal" id="logInBtn" data-target="#login-modal" class="btn btn-lg btn-danger">Log In</button>
+              <button data-toggle="modal" id="signUpBtn" data-target="#signup-modal" class="btn btn-lg btn-danger">Sign Up</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="tab-pane fade" id="define">
-        <h2>Define</h2>
-          <label for="def-description">Description</label>
-          <textarea class="form-control" id="def-description" rows="3" ></textarea>
-          <label for="def-logtype">Log work by</label>
-          <select class="form-control" id="def-logtype">
-            <option>Time</option>
-            <option>Weight</option>
-            <option>Reps</option>
-          </select>
-          <button id="def-save" class="btn btn-primary">Save</button>
-      </div>
+  <!-- PROFILE Tab -->
 
-      <div class="tab-pane fade" id="log">
-        <h2>Log</h2>
-        <label>Result</label>
-        <input type="text" class="form-control" id="log-result" />
-        <label>Workout Select:</label>
-        <select class="form-control" id="log-definition">
+  <div class="tab-pane fade" id="profile">
+    <h2 class="header"><b><span id="helloName"></span></b></h2>
+    <button id="promptBtn" class="btn btn-lg btn-primary"><span id="prompt"></span></button>
+<hr>
+        <div class="container">
+        <label for="def-description" class="header2 row col-lg-6">My Workout</label>
+          <div class="row col-lg-6 col-lg-offset-1">
+            <img src="img/workoutIcons/bike.png" class="toggleImage halfOpacity workoutImage" id="Bicycling" data-selected='0'>
+            <img src="img/workoutIcons/run.png" class="toggleImage halfOpacity workoutImage" id="Running" data-selected='0'>
+            <img src="img/workoutIcons/swim.png" class="toggleImage halfOpacity workoutImage" id="Swimming" data-selected='0'>
+          </div>
+          <div class="row col-lg-6 col-lg-offset-1">
+            <img src="img/workoutIcons/weight.png" class="toggleImage halfOpacity workoutImage" id="Weight-lifting" data-selected='0'>
+            <img src="img/workoutIcons/yoga.png" class="toggleImage halfOpacity workoutImage" id="Yoga" data-selected='0'>
+            <img src="img/workoutIcons/sports.png" class="toggleImage halfOpacity workoutImage" id="Sports" data-selected='0'>
+          </div>
+            <div class="col-lg-6">
+              <button id="other" class="btn btn-md btn-primary inputDisabled marginTop" disabled="disabled"><b>Other</b></button>
+                <div class="col-lg-6 col-lg-offset-3">
+                  <input type="text" id="def-description" class="form-control input-md marginTop" placeholder="Wrestling, Climbing, etc." />
+                </div>
+            </div>
+        </div>
+        <button id="def-save" class="btn btn-lg btn-primary inputDisabled marginTop4" disabled="disabled">Save</button>
+  </div>
+
+  <!-- LOG Tab -->
+
+  <div class="tab-pane fade" id="log">
+    <h2 class="header"><b>Log</b></h2>
+<hr>
+    <div class="container">
+      <div class="row col-lg-6">
+        <h4><span class="header2">Select Workout</span><span class="header3"> - <a href="#profile" id="profileTab" data-toggle="tab">(or add a workout)</a></span></h4>
+        <select class="form-control" id="log-definition"></select>
+
+        <label for="def-logtype" class="header2">Select Unit</label>
+        <select class="form-control" id="def-logtype">
+          <option>Time</option>
+          <option>Distance</option>
+          <option>Weight</option>
+          <option>Reps</option>
         </select>
-        <label>notes</label>
+
+        <label class="header2">Description</label>
+        <input type="text" class="form-control" id="log-result" />
+
+        <label class="header2">Notes</label>
         <textarea class="form-control" id="log-description" rows="3"></textarea>
-        <button id="log-save" class="btn btn-primary">Save</button>
-      </div>
 
-      <div class="tab-pane fade" id="update-log">
-      	<h2>Log Update</h2>
-      	<label>Result</label>
-      	<input type="hidden" class="form-control" id="update-id" />
-      	<input type="text" class="form-control" id="update-result" />
-      	<label>Workout Select:</label>
-      	<select class="form-control" id="update-definition"></select>
-      	<label>Notes</label>
-      	<textarea class="form-control" id="update-description" rows="3"></textarea>
-      	<br />
-      	<button id="log-update" class="btn btn-primary">Save</button>
-      </div>
-
-      <div class="tab-pane fade" id="history">
-        <h2>History</h2>
-        <ul class="list-group" id="history-list">
-        </ul>
+        <button id="log-save" class="btn btn-lg btn-primary marginTop4">Save</button>
+        
+        <div class="marginTop col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-6 col-xs-offset-3">
       </div>
     </div>
+    <div class="container">
+      <div class="row col-lg-12">
+        <img src="img/runner.gif" class="imgFill">
+      </div>
+     </div> 
+    </div>
   </div>
+
+  <!-- UPDATE LOG -->
+
+  <div class="tab-pane fade" id="update-log">
+  	<h2 class="header"><b>Edit</b></h2>
+  	<label class="header2">Result</label>
+  	<input type="hidden" class="form-control" id="update-id" />
+  	<input type="text" class="form-control" id="update-result" />
+  	<label class="header2">Workout Select:</label>
+  	<select class="form-control" id="update-definition"></select>
+  	<label class="header2">Notes</label>
+  	<textarea class="form-control" id="update-description" rows="3"></textarea>
+  	<br />
+  	<button id="log-update" class="btn btn-primary">Save</button>
+  </div>
+
+  <!-- HISTORY Tab -->
+
+  <div class="tab-pane fade" id="history">
+    <h2 class="header"><b>History</b></h2>
+  <hr>
+    <ul class="list-group" id="history-list">
+    </ul>
+  </div>
+
+  <!-- LOG IN MODAL -->
+
  <div class="modal fade" id="login-modal" role="dialog">
    <div class="modal-dialog">
-     <div class="modal-content">
+     <div class="modal-content col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2" style="margin-top: 20%">
        <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Login</h4>
+        <h4 class="modal-title header text-center"><b>Login</b></h4>
       </div>
       <div class="modal-body">
         <div class="alert alert-danger" style="display: none;" role="alert" id="li_error"></div>
-        <label for="li_username">Username:</label>
-        <input id="li_username" />
-        <label for="li_password">Password:</label>
-        <input type="password" id="li_password" />
+          <div class="container">
+            <div class="row marginAuto col-lg-3 col-md-4 col-sm-5 col-xs-10">
+                <input id="li_username" class="form-control input-lg" placeholder="Username" /><br>
+                <input type="password" id="li_password" class="form-control input-lg" placeholder="Password" />
+            </div>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button id="login" type="button" class="btn btn-primary">Login</button>
+        <button id="login" type="button" class="btn btn-primary">Log In</button>
       </div>
      </div>
    </div>
  </div>
+
+  <!-- SIGN UP MODAL -->
+
  <div class="modal fade" id="signup-modal" role="dialog">
    <div class="modal-dialog">
-     <div class="modal-content">
+     <div class="modal-content col-lg-8 col-lg-offset-2" style="margin-top: 12%">
        <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Sign Up</h4>
+        <h4 class="modal-title header text-center"><b>Sign Up</b></h4>
       </div>
       <div class="modal-body">
-      <div class="alert alert-danger" role="alert" style="display:none;" id="su_error"></div>
-        <label for="su_username">Username:</label>
-        <input id="su_username" />
-        <label for="su_password">Password:</label>
-        <input type="password" id="su_password" />
+      <div class="alert alert-danger" style="display:none;" role="alert" id="su_error"></div>
+        <div class="container">
+          <div class="row marginAuto col-lg-3 col-md-4 col-sm-5 col-xs-10">
+            <input id="su_name" class="form-control input-lg" placeholder="Name" /><br>
+            <input id="su_username" class="form-control input-lg" placeholder="Username"/><br>
+            <input type="password" id="su_password" class="form-control input-lg" placeholder="Password"/><br>
+            <input type="password" id="su_password_confirm" class="form-control input-lg" placeholder="Confirm Password" />
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -132,13 +194,15 @@
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!--<script src="./app.js"></script>
+    
+    <script src="./app.js"></script>
     <script src="./user/auth.js"></script>
     <script src="./workouts/define.js"></script>
-    <script src="./workouts/log.js"></script> -->
-    
+    <script src="./workouts/log.js"></script>
+    <script src="./workouts/profile.js"></script>
+    <!-- 
 <script src="./dist/bundle.js"></script>
-
+ -->
 </body>
 
 </html>

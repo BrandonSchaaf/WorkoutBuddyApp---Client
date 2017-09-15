@@ -1,7 +1,8 @@
 $(function(){
 
-var WorkoutLog = (function($, undefined) {
-      var API_BASE =  "https://workout-buddy-api.herokuapp.com/api/";
+var WorkoutLog = (function($, undefined) {               // THIS IS THE ENTIRE APP. WorkoutLog = a giant IFFE. A self-calling function. "extend" allows this object to extend across files. Methods and other objects can then be added elsewhere.
+      // var API_BASE = "https://workout-buddy-api.herokuapp.com/api/";
+      var API_BASE = "http://localhost:3000/api/"
       var userDefinitions = [];
 
       var setAuthHeader = function(sessionToken) {
@@ -32,6 +33,29 @@ var WorkoutLog = (function($, undefined) {
       }
    });
 
+   // Show Other input and hide it on save
+    $("#def-description").hide();
+
+    $("#other").click(function(){
+      $("#def-description").show();
+      $("#other").hide();
+    });
+
+    $("#def-save").click(function(){
+      $("#def-description").hide();
+      $("#other").show();
+    })
+
+   // Focus cursor on modal when opened
+   $("#login-modal").on('shown.bs.modal', function () {
+    $('#li_username').focus();
+   })
+
+   // Focus cursor on modal when opened
+   $("#signup-modal").on('shown.bs.modal', function () {
+    $('#su_name').focus();
+   })
+
    // bind tab change events
    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       var target = $(e.target).attr("href"); // activated tab
@@ -46,6 +70,20 @@ var WorkoutLog = (function($, undefined) {
       if (target === "#history") {
         WorkoutLog.log.setHistory();
       }
+   });
+
+   // When clicked, allow profile edit
+   $("#promptBtn").click(function(event){
+    event.preventDefault();
+    $('.inputDisabled').removeAttr("disabled")
+    $('.toggleImage').removeClass("halfOpacity")
+   });
+
+   // Disabling after save
+   $("#def-save").click(function(event){
+    event.preventDefault();
+    $('.inputDisabled').attr('disabled','disabled')
+    $('.toggleImage').addClass("halfOpacity")
    });
 
    // bind enter key

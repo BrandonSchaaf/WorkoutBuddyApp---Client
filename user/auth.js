@@ -3,16 +3,17 @@ $(function(){
 		// signup method
 		signup: function(){
 			// username & password variables
+			var name = $("#su_name").val();
 			var username = $("#su_username").val();
 			var password = $("#su_password").val();
 			// user object
 			var user = {
 				user: {
 					username: username,
-					password: password
+					password: password,
+					name: name
 				}
 			};
-
 			// signup post
 			var signup = $.ajax({
 				type:"POST",
@@ -30,11 +31,14 @@ $(function(){
 				}
 
 				$("#signup-modal").modal("hide");
-				$(".disabled").removeClass("disabled");
-				$("#loginout").text("Logout");
+				$(".invisible").removeClass("invisible");
+				$("#loginout").text("Log Out");
 				$("#su_username").val("");
 				$("#su_password").val("");
-				$('a[href="#define"]').tab("show");
+				$("#su_name").val("");
+				$('a[href="#profile"]').tab("show");
+				$("#helloName").replaceWith('<span id="helloName">Nice to meet you, ' + data.user.name + '!</span>');
+				$("#prompt").replaceWith('<span id="promt">Tell us about your workout</span>');
 				
 			}).fail(function(){
 				$("#su_error").text("Hmm... Something happened with your sign up.").show();
@@ -58,38 +62,39 @@ $(function(){
 			.done(function(data) {
 				if (data.sessionToken) {
 					WorkoutLog.setAuthHeader(data.sessionToken);
-					WorkoutLog.definition.fetchAll();
 					WorkoutLog.log.fetchAll();
 				}
 
 				$("#login-modal").modal("hide");
-				$(".disabled").removeClass("disabled");
-				$("#loginout").text("Logout");
+				$(".invisible").removeClass("invisible");
+				$("#loginout").text("Log Out");
 
 				$("#li_username").val("");
 				$("#li_password").val("");
-				$('a[href="#define"]').tab("show");
+				$('a[href="#log"]').tab("show");
+
+				$("#helloName").replaceWith('<span id="helloName">Welcome back, ' + data.user.name + '!</span>');
+				$("#prompt").replaceWith('<span id="promt">Edit your workout</span>');
+				// Get first name with data.user
+
 			})
 
 			.fail(function(){
-				$("#li_error").text("Huh... Something happened during sign up. ")
+				$("#li_error").text("Huh... Something happened during log in. ")
 			});
 		},
 
 		loginout:function(){
 			if (window.localStorage.getItem("sessionToken")){
 				window.localStorage.removeItem("sessionToken");
-				$("#loginout").text("Login");
+				location.reload();
 			}
-		} 			// To Do: Make sure stuff is disabled on logout
+		}
 	});
 
 	// bind events
 	$("#login").on("click", WorkoutLog.login);
 	$("#signup").on("click", WorkoutLog.signup);
-	$("#loginout").on("click", WorkoutLog.loginout);
+	$("#logoutTab").on("click", WorkoutLog.loginout);
 
-	if (window.localStorage.getItem("sessionToken")) {
-		$("#loginout").text("Logout");
-	}
 });

@@ -2,18 +2,45 @@
 	background-color: #16b8e5;
 }
 
+.yellowBackground {
+	background-color: #FDF406;
+}
+
+.redBackground {
+	background-color: tomato;
+}
+
 .imgFill {
 	width: 100%;
 }
 
+.inline {
+  display: inline-block;
+}
+
+.marginAuto{
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .marginTop{
-	margin-top: 7%;
+	margin-top: 4%;
+}
+
+.workoutImage{
+	margin: 10px;
+	border-radius: 50%;
+    box-shadow: 10px 10px #056883;
+}
+
+.centered{
+    margin: 0 auto;
+    float: none;
 }
 
 .splashText1{
 	font-family: "Helvetica Neue";
 	font-style: italic;
-	align-content: center;
 	text-align: center;
 	font-size: 110px;
 	color: #FDF406;
@@ -23,18 +50,51 @@
 	line-height: 10px;
 	font-family: "Helvetica Neue";
 	font-style: italic;
-	align-content: center;
 	text-align: center;
 	font-size: 110px;
 	color: #FDB806;
 }
 
-.splashText3{
-	line-height: 150px;
+.marginTop2{
+	margin-top: 2%;
+}
+
+.marginTop4{
+	margin-top: 2%;
+	margin-left: 2%;
+}
+
+.header{
 	font-family: "Helvetica Neue";
 	font-style: italic;
-	align-content: center;
-	text-align: center;
-	font-size: 30px;
-	color: #037796;
+	font-size: 70px;
+	color: #FDF406;
+}
+
+.header2{
+	font-family: "Helvetica Neue";
+	font-size: 20px;
+	color: #056883;	
+}
+
+.header3{
+	font-family: "Helvetica Neue";
+	font-size: 15px;
+	color: #056883;
+}
+
+.halfOpacity{
+	opacity: .5;
+}
+
+.selected{
+	margin: 10px;
+    position: relative;
+    left: 10px;
+    top: 10px;
+}
+
+.scoot{
+	position: relative;
+	left: -40%;
 }

@@ -5,7 +5,7 @@ $(function(){
 
 			create: function(){
 				var def = {
-					desc:$("#def-description").val(),
+					desc: $("#def-description").val(),
 					type: $("#def-logtype").val()
 				};
 				var postData = {definition: def};
@@ -19,10 +19,9 @@ $(function(){
 				define.done(function(data){
 					WorkoutLog.definition.userDefinitions.push(data.definition);
 					$("#def-description").val("");
-					$("#def-logtype").val("");
+					WorkoutLog.definition.fetchAll()
 					$('a[href="#log"]').tab("show");
 				});
-
 			},
 
 			fetchAll: function(){
@@ -40,6 +39,7 @@ $(function(){
 					console.log(err);
 				});
 			}
+
 		}
 	});
 
